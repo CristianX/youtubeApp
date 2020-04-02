@@ -15,19 +15,23 @@ export class HomeComponent implements OnInit {
   videoSel: any;
 
   constructor( public _yts: YoutubeService ) {
-    this._yts.getVideos().subscribe( videos => {
-      console.log(videos);
-      this.videos = videos.items;
-      console.log(this.videos);
-    } );
+    this._yts.getVideos().subscribe( videos => this.videos = videos.items);
   }
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  cargarMas() {
+    this._yts.getVideos().subscribe( videos => this.videos.push.apply(this.videos, videos));
   }
 
   verVideo( video: any ) {
     this.videoSel = video;
     $('#myModal').modal('show');
+  }
+
+  cerrarModal() {
+    this.videoSel = null;
+    $('#myModal').modal('hide');
   }
 
 }

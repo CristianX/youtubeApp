@@ -7,12 +7,16 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 
 // Http Module
 import { HttpClientModule } from '@angular/common/http';
+import { PipeSeguridadPipe } from './pipes/pipe-seguridad.pipe';
+
+// Pipes
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    NavbarComponent
+    NavbarComponent,
+    PipeSeguridadPipe
   ],
   imports: [
     BrowserModule,

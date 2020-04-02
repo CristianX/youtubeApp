@@ -11,6 +11,7 @@ export class YoutubeService {
   private youtubeUrl = 'https://www.googleapis.com/youtube/v3';
   private apiKey = 'AIzaSyD5wTzf1Z4NxXnoBProcNvfvcwKBJ8VQ1A';
   private playlistId = 'UUuaPTYj15JSkETGnEseaFFg';
+  private nextPageToken = '';
 
   constructor( public http: HttpClient ) {}
 
@@ -32,6 +33,10 @@ export class YoutubeService {
         key: this.apiKey,
       }
     });
+
+    if ( this.nextPageToken ) {
+      paramsObject.set( 'pageToken', this.nextPageToken );
+    }
 
     return this.http.get( url2, {params: paramsObject})
             .pipe(map((res: any) =>  res ));
